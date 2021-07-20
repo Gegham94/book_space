@@ -1,0 +1,68 @@
+name: book_space
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^9.1.0
+  flutter_rating_bar: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Roboto_Black
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+
+    - family: Roboto_BlackItalic
+      fonts:
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+
+    - family: Roboto_Bold
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+
+    - family: Roboto_BoldItalic
+      fonts:
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
+
+    - family: Roboto_Italic
+      fonts:
+        - asset: assets/fonts/Roboto-Italic.ttf
+
+    - family: Roboto_Light
+      fonts:
+        - asset: assets/fonts/Roboto-Light.ttf
+
+    - family: Roboto_Medium
+      fonts:
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
+
+    - family: Roboto_Regular
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+
+    - family: Roboto_BoldItalic
+      fonts:
+        - asset: assets/fonts/Roboto-Thin.ttf
+
+    - family: Roboto_BoldItalic
+      fonts:
+        - asset: assets/fonts/Roboto-ThinItalic.ttf
