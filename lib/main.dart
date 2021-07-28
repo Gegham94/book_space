@@ -1,4 +1,4 @@
-import 'package:book_space/ui/screens/sign_in/sign_in_screen.dart';
+import 'package:book_space/ui/screens/interests/interests_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class BookSpaceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignInScreen(),
+      home: InterestsScreen(),
 
     );
   }
