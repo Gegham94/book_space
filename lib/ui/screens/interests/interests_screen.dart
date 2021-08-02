@@ -10,34 +10,112 @@ class InterestsScreen extends StatelessWidget {
       backgroundColor: BSColors.mainOrange,
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              Text(
-                'Select Your Interests',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Roboto_Regular",
-                    fontSize: 18),
-              ),
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Romance"),
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      minimumSize: Size(100, 100),
-                      primary: Colors.white,
-                      onPrimary: BSColors.mainOrange,
-                    ),
-                  ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  'Select Your Interests',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Roboto_Bold",
+                      fontSize: 20),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Philosopy"),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              minimumSize: Size(140, 140),
+                              primary: Colors.white,
+                              onPrimary: BSColors.mainOrange,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Economy"),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              minimumSize: Size(100, 100),
+                              primary: Colors.white,
+                              onPrimary: BSColors.mainOrange,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Entertainment"),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              minimumSize: Size(120, 120),
+                              primary: Colors.white,
+                              onPrimary: BSColors.mainOrange,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Romance"),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              minimumSize: Size(100, 100),
+                              primary: Colors.white,
+                              onPrimary: BSColors.mainOrange,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Dramma"),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              minimumSize: Size(140, 140),
+                              primary: Colors.white,
+                              onPrimary: BSColors.mainOrange,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Literature"),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              minimumSize: Size(100, 100),
+                              primary: Colors.white,
+                              onPrimary: BSColors.mainOrange,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
