@@ -1,5 +1,6 @@
-import 'package:book_space/ui/screens/home/home_screen.dart';
+import 'package:book_space/app/navigation_screens.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(BookSpaceApp());
@@ -12,7 +13,7 @@ class BookSpaceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: NavigationScreen(),
 
     );
   }
