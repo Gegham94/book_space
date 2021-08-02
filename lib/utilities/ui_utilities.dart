@@ -6,16 +6,18 @@ import 'package:flutter/material.dart';
 AppBar buildAppBar({
   required BuildContext context,
   String? title,
+  Color? bgColor,
+  Color? titleColor,
 }) {
   return AppBar(
     title: title != null
         ? Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(color: BSColors.textBlackColor),
+            style: TextStyle(color: titleColor),
           )
         : null,
-    backgroundColor: BSColors.screenBackground,
+    backgroundColor: bgColor,
     centerTitle: true,
     leadingWidth: 0.0,
     elevation: 0,

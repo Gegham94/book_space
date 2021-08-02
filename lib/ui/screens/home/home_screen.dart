@@ -3,15 +3,8 @@ import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:flutter/material.dart';
 
-class AuthorizationScaffold extends StatelessWidget {
-  final Widget child;
-  final String? title;
-
-  const AuthorizationScaffold({
-    Key? key,
-    required this.child,
-    this.title,
-  }) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +12,8 @@ class AuthorizationScaffold extends StatelessWidget {
       backgroundColor: BSColors.screenBackground,
       appBar: buildAppBar(
         context: context,
-        title: title,
-        bgColor: BSColors.screenBackground,
+        title: 'Home',
+        bgColor: BSColors.mainOrange,
         titleColor: BSColors.screenBackground,
       ),
       body: SafeArea(
@@ -28,10 +21,11 @@ class AuthorizationScaffold extends StatelessWidget {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Padding(
             padding: kScaffoldMainPadding,
-            child: child,
+            child: Column(),
           ),
         ),
       ),
     );
+
   }
 }

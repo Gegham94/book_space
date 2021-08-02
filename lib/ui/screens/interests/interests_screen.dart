@@ -13,6 +13,9 @@ class InterestsScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
                 Text(
                   'Select Your Interests',
                   style: TextStyle(
@@ -21,7 +24,7 @@ class InterestsScreen extends StatelessWidget {
                       fontSize: 20),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.07,
+                  height: MediaQuery.of(context).size.height * 0.05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +64,7 @@ class InterestsScreen extends StatelessWidget {
                             child: Text("Entertainment"),
                             style: ElevatedButton.styleFrom(
                               shape: CircleBorder(),
-                              minimumSize: Size(120, 120),
+                              minimumSize: Size(120, 140),
                               primary: Colors.white,
                               onPrimary: BSColors.mainOrange,
                             ),
