@@ -21,7 +21,7 @@ class AuthorizationScaffold extends StatelessWidget {
         context: context,
         title: title,
         bgColor: BSColors.screenBackground,
-        titleColor: BSColors.screenBackground,
+        titleColor: BSColors.textBlackColor,
       ),
       body: SafeArea(
         child: GestureDetector(
