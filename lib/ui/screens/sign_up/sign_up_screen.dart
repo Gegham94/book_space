@@ -3,15 +3,28 @@ import 'package:book_space/constants/constants.dart';
 import 'package:book_space/constants/widget_styles.dart';
 import 'package:book_space/mixins/validation.dart';
 import 'package:book_space/ui/screens/commons/authorization_scaffold.dart';
+import 'package:book_space/ui/screens/home/home_screen.dart';
 import 'package:book_space/ui/widgets/linked_text.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:book_space/values/bs_strings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget with Validation {
-  SignUpScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> with Validation {
   final _formKey = GlobalKey<FormState>();
+
+  DatabaseReference dbRef =
+      FirebaseDatabase.instance.reference().child("Users");
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   TextEditingController? emailController = TextEditingController();
   TextEditingController? passwordController = TextEditingController();
   TextEditingController? confirmPassController = TextEditingController();
@@ -82,10 +95,49 @@ class SignUpScreen extends StatelessWidget with Validation {
   }
 
   void _signUpButtonOnPressed() {
-    if (_formKey.currentState?.validate() ?? false) {}
+    // if (_formKey.currentState?.validate() ?? false) {
+      firebaseAuth
+          .createUserWithEmailAndPassword(
+              email: emailController!.text, password: passwordController!.text)
+          .then((result) {
+        dbRef.child(result.user!.uid).set({
+          "email": emailController!.text,
+          "password": passwordController!.text,
+        }).then((res) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        });
+      }).catchError((err) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Error"),
+                content: Text(err.message),
+                actions: [
+                  TextButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+      });
+    // }
   }
 
   void _signInLinkedTextOnTap(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController!.dispose();
+    passwordController!.dispose();
   }
 }

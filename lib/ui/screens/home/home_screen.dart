@@ -2,7 +2,6 @@ import 'package:book_space/constants/constants.dart';
 import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

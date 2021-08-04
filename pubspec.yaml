@@ -17,6 +17,9 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   get: ^4.3.4
   flutter_screenutil: ^5.0.0+2
+  firebase_core: ^1.4.0
+  firebase_database: ^7.1.2
+  firebase_auth: ^3.0.1
 
 dev_dependencies:
   flutter_test:
