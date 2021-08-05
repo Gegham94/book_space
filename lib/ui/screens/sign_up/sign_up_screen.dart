@@ -19,6 +19,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> with Validation {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
 
   DatabaseReference dbRef =

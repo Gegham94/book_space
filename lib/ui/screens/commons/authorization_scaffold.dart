@@ -15,17 +15,17 @@ class AuthorizationScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: BSColors.screenBackground,
-      appBar: buildAppBar(
-        context: context,
-        title: title,
-        bgColor: BSColors.screenBackground,
-        titleColor: BSColors.textBlackColor,
-      ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: BSColors.screenBackground,
+        appBar: buildAppBar(
+          context: context,
+          title: title,
+          bgColor: BSColors.screenBackground,
+          titleColor: BSColors.textBlackColor,
+        ),
+        body: SafeArea(
           child: Padding(
             padding: kScaffoldMainPadding,
             child: child,
