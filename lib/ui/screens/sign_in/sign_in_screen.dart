@@ -91,33 +91,35 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
   }
 
   void _signInButtonOnPressed() {
-    firebaseAuth
-        .signInWithEmailAndPassword(
-            email: emailController!.text, password: passwordController!.text)
-        .then((result) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => NavigationScreen(uid: result.user!.uid)),
-      );
-    }).catchError((err) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Error"),
-              content: Text(err.message),
-              actions: [
-                ElevatedButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    });
+    if (_formKey.currentState?.validate() ?? false) {
+      firebaseAuth
+          .signInWithEmailAndPassword(
+          email: emailController!.text, password: passwordController!.text)
+          .then((result) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => NavigationScreen(uid: result.user!.uid)),
+        );
+      }).catchError((err) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Error"),
+                content: Text(err.message),
+                actions: [
+                  ElevatedButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+      });
+    }
   }
 
   void _signUpLinkedTextOnTap(BuildContext context) {

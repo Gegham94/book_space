@@ -96,40 +96,44 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
   }
 
   void _signUpButtonOnPressed() {
-    // if (_formKey.currentState?.validate() ?? false) {
-    firebaseAuth
-        .createUserWithEmailAndPassword(
-            email: emailController!.text, password: passwordController!.text)
-        .then((result) {
-      dbRef.child(result.user!.uid).set({
-        "email": emailController!.text,
-        "password": passwordController!.text,
-      }).then((res) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => NavigationScreen(uid: result.user!.uid)),
-        );
+    if (_formKey.currentState?.validate() ?? false) {
+      setState(() {
+        isLoading = true;
       });
-    }).catchError((err) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Error"),
-              content: Text(err.message),
-              actions: [
-                TextButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    });
-    // }
+      firebaseAuth
+          .createUserWithEmailAndPassword(
+              email: emailController!.text, password: passwordController!.text)
+          .then((result) {
+        dbRef.child(result.user!.uid).set({
+          "email": emailController!.text,
+          "password": passwordController!.text,
+        }).then((res) {
+          isLoading = false;
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NavigationScreen(uid: result.user!.uid)),
+          );
+        });
+      }).catchError((err) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Error"),
+                content: Text(err.message),
+                actions: [
+                  TextButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+      });
+    }
   }
 
   void _signInLinkedTextOnTap(BuildContext context) {
