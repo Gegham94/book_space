@@ -1,3 +1,4 @@
+import 'package:book_space/app/navigation_screens.dart';
 import 'package:book_space/constants/bs_string_keys.dart';
 import 'package:book_space/constants/constants.dart';
 import 'package:book_space/constants/widget_styles.dart';
@@ -8,11 +9,19 @@ import 'package:book_space/ui/widgets/bs_social_buttons.dart';
 import 'package:book_space/ui/widgets/linked_text.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:book_space/values/bs_strings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SignInScreen extends StatelessWidget with Validation {
-  SignInScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
+
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> with Validation {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   final _formKey = GlobalKey<FormState>();
   TextEditingController? emailController = TextEditingController();
@@ -81,6 +90,36 @@ class SignInScreen extends StatelessWidget with Validation {
     );
   }
 
+  void _signInButtonOnPressed() {
+    firebaseAuth
+        .signInWithEmailAndPassword(
+            email: emailController!.text, password: passwordController!.text)
+        .then((result) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => NavigationScreen(uid: result.user!.uid)),
+      );
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                ElevatedButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
+  }
+
   void _signUpLinkedTextOnTap(BuildContext context) {
     Navigator.push(
       context,
@@ -88,10 +127,6 @@ class SignInScreen extends StatelessWidget with Validation {
         builder: (context) => SignUpScreen(),
       ),
     );
-  }
-
-  void _signInButtonOnPressed() {
-    if (_formKey.currentState?.validate() ?? false) {}
   }
 
   void _socialButtonOnPressed(type) {

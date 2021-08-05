@@ -5,7 +5,8 @@ import 'package:book_space/ui/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({Key? key}) : super(key: key);
+  final String? uid;
+  const NavigationScreen({Key? key, this.uid}) : super(key: key);
 
   @override
   _NavigationScreenState createState() => _NavigationScreenState();

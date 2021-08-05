@@ -4,7 +4,8 @@ import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final String? uid;
+  const HomeScreen({Key? key, this.uid}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();

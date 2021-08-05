@@ -1,9 +1,9 @@
+import 'package:book_space/app/navigation_screens.dart';
 import 'package:book_space/constants/bs_string_keys.dart';
 import 'package:book_space/constants/constants.dart';
 import 'package:book_space/constants/widget_styles.dart';
 import 'package:book_space/mixins/validation.dart';
 import 'package:book_space/ui/screens/commons/authorization_scaffold.dart';
-import 'package:book_space/ui/screens/home/home_screen.dart';
 import 'package:book_space/ui/widgets/linked_text.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:book_space/values/bs_strings.dart';
@@ -96,37 +96,38 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
 
   void _signUpButtonOnPressed() {
     // if (_formKey.currentState?.validate() ?? false) {
-      firebaseAuth
-          .createUserWithEmailAndPassword(
-              email: emailController!.text, password: passwordController!.text)
-          .then((result) {
-        dbRef.child(result.user!.uid).set({
-          "email": emailController!.text,
-          "password": passwordController!.text,
-        }).then((res) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
-        });
-      }).catchError((err) {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Error"),
-                content: Text(err.message),
-                actions: [
-                  TextButton(
-                    child: Text("Ok"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
-              );
-            });
+    firebaseAuth
+        .createUserWithEmailAndPassword(
+            email: emailController!.text, password: passwordController!.text)
+        .then((result) {
+      dbRef.child(result.user!.uid).set({
+        "email": emailController!.text,
+        "password": passwordController!.text,
+      }).then((res) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => NavigationScreen(uid: result.user!.uid)),
+        );
       });
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                TextButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
     // }
   }
 
