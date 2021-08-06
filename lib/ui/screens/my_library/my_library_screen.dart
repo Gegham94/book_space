@@ -1,8 +1,7 @@
-import 'package:book_space/constants/constants.dart';
+import 'package:book_space/ui/widgets/bs_book_info_component.dart';
 import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MyLibraryScreen extends StatefulWidget {
   const MyLibraryScreen({Key? key}) : super(key: key);
@@ -14,8 +13,6 @@ class MyLibraryScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<MyLibraryScreen> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: BSColors.screenBackground,
       appBar: buildAppBar(
@@ -24,78 +21,18 @@ class _CategoriesScreenState extends State<MyLibraryScreen> {
         bgColor: BSColors.mainOrange,
         titleColor: BSColors.screenBackground,
       ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: Padding(
-            padding: kScaffoldMainPadding,
-            child: Container(
-              child: ListView(
-                children: [
-                  Row(
-                    children: [
-                      Image(
-                        image: AssetImage('assets/images/books.jpeg'),
-                        width: screenSize.width * 0.3,
-                      ),
-                      Expanded(
-                        child: Container(
-                          color: Colors.white,
-                          width: screenSize.width * 0.12,
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Wrap(
-                                children: [
-                                  Text(
-                                    'Baby is Coming',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                              Text(
-                                'Phillip Anthony',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black45,
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                              RatingBar(
-                                itemCount: 5,
-                                initialRating: 2.5,
-                                maxRating: 15,
-                                itemSize: 14.0,
-                                allowHalfRating: true,
-                                ratingWidget: RatingWidget(
-                                  full: Icon(Icons.star),
-                                  half: Icon(Icons.star_half),
-                                  empty: Icon(Icons.star_border_outlined),
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                              ),
-                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                              Text(
-                                '\$ 15.99',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return buildBookInfoComponent(
+            context: context,
+            bookName: 'Baby Caming',
+            bookAuthorName: 'Jon Lenon',
+            bookInitialRating: 3,
+            bookPrice: 15.99,
+          );
+        },
       ),
     );
   }

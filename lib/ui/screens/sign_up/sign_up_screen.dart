@@ -5,6 +5,7 @@ import 'package:book_space/constants/widget_styles.dart';
 import 'package:book_space/mixins/validation.dart';
 import 'package:book_space/ui/screens/commons/authorization_scaffold.dart';
 import 'package:book_space/ui/widgets/linked_text.dart';
+import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:book_space/values/bs_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
     final deltaSpace01 = screenHeight(context) * 0.01;
     final deltaSpace02 = screenHeight(context) * 0.02;
     final deltaSpace05 = screenHeight(context) * 0.05;
+    final deltaSpaceCircularIndicator = screenWidth(context) * 0.4;
 
     return AuthorizationScaffold(
       title: BSStrings[BSStringKeys.sign_up]!,
@@ -77,9 +79,17 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
                   obscureText: true,
                 ),
                 SizedBox(height: deltaSpace05),
-                buildSubmitButton(
-                  onPress: _signUpButtonOnPressed,
-                  title: BSStrings[BSStringKeys.sign_up]!,
+                Container(
+                  child: isLoading ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: deltaSpaceCircularIndicator),
+                    child: CircularProgressIndicator(
+                      color: BSColors.mainOrange,
+                      strokeWidth: 2.0,
+                    ),
+                  ) : buildSubmitButton(
+                    onPress: _signUpButtonOnPressed,
+                    title: BSStrings[BSStringKeys.sign_in]!,
+                  ),
                 ),
                 SizedBox(height: deltaSpace01),
                 LinkedText(

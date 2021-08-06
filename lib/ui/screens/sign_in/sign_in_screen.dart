@@ -7,6 +7,7 @@ import 'package:book_space/ui/screens/commons/authorization_scaffold.dart';
 import 'package:book_space/ui/screens/sign_up/sign_up_screen.dart';
 import 'package:book_space/ui/widgets/bs_social_buttons.dart';
 import 'package:book_space/ui/widgets/linked_text.dart';
+import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:book_space/values/bs_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> with Validation {
+  bool isLoading = false;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   final _formKey = GlobalKey<FormState>();
@@ -31,6 +33,7 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
   Widget build(BuildContext context) {
     final deltaSpace04 = screenHeight(context) * 0.04;
     final deltaSpace01 = screenHeight(context) * 0.01;
+    final deltaSpaceCircularIndicator = screenWidth(context) * 0.4;
 
     return AuthorizationScaffold(
       title: BSStrings[BSStringKeys.sign_in],
@@ -70,9 +73,17 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
                       obscureText: true,
                     ),
                     SizedBox(height: deltaSpace04),
-                    buildSubmitButton(
-                      onPress: _signInButtonOnPressed,
-                      title: BSStrings[BSStringKeys.sign_in]!,
+                    Container(
+                      child: isLoading ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: deltaSpaceCircularIndicator),
+                        child: CircularProgressIndicator(
+                          color: BSColors.mainOrange,
+                          strokeWidth: 2.0,
+                        ),
+                      ) : buildSubmitButton(
+                        onPress: _signInButtonOnPressed,
+                        title: BSStrings[BSStringKeys.sign_in]!,
+                      ),
                     ),
                     SizedBox(height: deltaSpace01),
                     LinkedText(
@@ -92,10 +103,14 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
 
   void _signInButtonOnPressed() {
     if (_formKey.currentState?.validate() ?? false) {
+      setState(() {
+        isLoading = true;
+      });
       firebaseAuth
           .signInWithEmailAndPassword(
-          email: emailController!.text, password: passwordController!.text)
+              email: emailController!.text, password: passwordController!.text)
           .then((result) {
+        isLoading = false;
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(

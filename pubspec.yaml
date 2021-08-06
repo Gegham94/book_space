@@ -20,6 +20,8 @@ dependencies:
   firebase_core: ^1.4.0
   firebase_database: ^7.1.2
   firebase_auth: ^3.0.1
+  googleapis: ^4.0.0
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
