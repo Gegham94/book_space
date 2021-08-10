@@ -21,18 +21,19 @@ class _CategoriesScreenState extends State<MyLibraryScreen> {
         bgColor: BSColors.mainOrange,
         titleColor: BSColors.screenBackground,
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: 1,
-        itemBuilder: (BuildContext context, int index) {
-          return buildBookInfoComponent(
-            context: context,
-            bookName: 'Baby Caming',
-            bookAuthorName: 'Jon Lenon',
-            bookInitialRating: 3,
-            bookPrice: 15.99,
-          );
-        },
+      body: Container(
+        child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return buildBookInfoComponent(
+              context: context,
+              bookName: 'Baby Coming',
+              bookAuthorName: 'Jon Week',
+              bookInitialRating: 3,
+              bookPrice: 15.99,
+            );
+          },
+        ),
       ),
     );
   }
