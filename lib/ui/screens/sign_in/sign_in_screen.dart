@@ -74,16 +74,19 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
                     ),
                     SizedBox(height: deltaSpace04),
                     Container(
-                      child: isLoading ? Padding(
-                        padding: EdgeInsets.symmetric(horizontal: deltaSpaceCircularIndicator),
-                        child: CircularProgressIndicator(
-                          color: BSColors.mainOrange,
-                          strokeWidth: 2.0,
-                        ),
-                      ) : buildSubmitButton(
-                        onPress: _signInButtonOnPressed,
-                        title: BSStrings[BSStringKeys.sign_in]!,
-                      ),
+                      child: isLoading
+                          ? Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: deltaSpaceCircularIndicator),
+                              child: CircularProgressIndicator(
+                                color: BSColors.mainOrange,
+                                strokeWidth: 2.0,
+                              ),
+                            )
+                          : buildSubmitButton(
+                              onPress: _signInButtonOnPressed,
+                              title: BSStrings[BSStringKeys.sign_in]!,
+                            ),
                     ),
                     SizedBox(height: deltaSpace01),
                     LinkedText(

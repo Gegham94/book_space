@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   final String? uid;
+
   const HomeScreen({Key? key, this.uid}) : super(key: key);
 
   @override
@@ -14,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: BSColors.screenBackground,
       appBar: buildAppBar(

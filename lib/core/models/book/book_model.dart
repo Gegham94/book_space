@@ -16,7 +16,8 @@ class BooksModel {
   factory BooksModel.fromJson(Map<String, dynamic> itemJson) {
     return BooksModel(
       bookName: itemJson[BooksModelKeys.bookName] ?? "Book Name",
-      bookAuthorName: itemJson[BooksModelKeys.bookAuthorName] ?? "Book Author Name",
+      bookAuthorName:
+          itemJson[BooksModelKeys.bookAuthorName] ?? "Book Author Name",
       bookInitialRating: itemJson[BooksModelKeys.bookInitialRating] ?? 0.0,
       bookPrice: itemJson[BooksModelKeys.bookPrice] ?? 0.0,
     );

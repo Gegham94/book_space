@@ -14,8 +14,8 @@ class InterestsScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
+                  height: MediaQuery.of(context).size.height * 0.05,
+                ),
                 Text(
                   'Select Your Interests',
                   style: TextStyle(

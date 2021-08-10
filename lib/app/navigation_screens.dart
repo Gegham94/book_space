@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class NavigationScreen extends StatefulWidget {
   final String? uid;
+
   const NavigationScreen({Key? key, this.uid}) : super(key: key);
 
   @override
