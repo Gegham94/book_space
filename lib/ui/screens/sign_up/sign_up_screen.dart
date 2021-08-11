@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
     final deltaSpace01 = screenHeight(context) * 0.01;
     final deltaSpace02 = screenHeight(context) * 0.02;
     final deltaSpace05 = screenHeight(context) * 0.05;
-    final deltaSpaceCircularIndicator = screenWidth(context) * 0.4;
+    final deltaSpaceCircularIndicator = screenWidth(context) * 0.43;
 
     return AuthorizationScaffold(
       title: BSStrings[BSStringKeys.sign_up]!,
@@ -83,7 +83,8 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
                   child: isLoading
                       ? Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: deltaSpaceCircularIndicator),
+                            horizontal: deltaSpaceCircularIndicator,
+                          ),
                           child: CircularProgressIndicator(
                             color: BSColors.mainOrange,
                             strokeWidth: 2.0,
@@ -129,6 +130,9 @@ class _SignUpScreenState extends State<SignUpScreen> with Validation {
           );
         });
       }).catchError((err) {
+        setState(() {
+          isLoading = false;
+        });
         showDialog(
             context: context,
             builder: (BuildContext context) {

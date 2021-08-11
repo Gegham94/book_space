@@ -1,3 +1,4 @@
+import 'package:book_space/constants/constants.dart';
 import 'package:book_space/ui/widgets/bs_book_info_component.dart';
 import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
@@ -21,18 +22,21 @@ class _CategoriesScreenState extends State<MyLibraryScreen> {
         bgColor: BSColors.mainOrange,
         titleColor: BSColors.screenBackground,
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return buildBookInfoComponent(
-              context: context,
-              bookName: 'Baby Coming',
-              bookAuthorName: 'Jon Week',
-              bookInitialRating: 3,
-              bookPrice: 15.99,
-            );
-          },
+      body: Padding(
+        padding: kScaffoldMainPadding,
+        child: Container(
+          child: ListView.builder(
+            itemCount: 5,
+            itemBuilder: (BuildContext context, int index) {
+              return buildBookInfoComponent(
+                context: context,
+                bookName: 'Baby Coming',
+                bookAuthorName: 'Jon Week',
+                bookInitialRating: 3,
+                bookPrice: 15.99,
+              );
+            },
+          ),
         ),
       ),
     );

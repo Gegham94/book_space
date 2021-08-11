@@ -33,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
   Widget build(BuildContext context) {
     final deltaSpace04 = screenHeight(context) * 0.04;
     final deltaSpace01 = screenHeight(context) * 0.01;
-    final deltaSpaceCircularIndicator = screenWidth(context) * 0.4;
+    final deltaSpaceCircularIndicator = screenWidth(context) * 0.43;
 
     return AuthorizationScaffold(
       title: BSStrings[BSStringKeys.sign_in],
@@ -77,7 +77,8 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
                       child: isLoading
                           ? Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: deltaSpaceCircularIndicator),
+                                horizontal: deltaSpaceCircularIndicator,
+                              ),
                               child: CircularProgressIndicator(
                                 color: BSColors.mainOrange,
                                 strokeWidth: 2.0,
@@ -120,6 +121,9 @@ class _SignInScreenState extends State<SignInScreen> with Validation {
               builder: (context) => NavigationScreen(uid: result.user!.uid)),
         );
       }).catchError((err) {
+        setState(() {
+          isLoading = false;
+        });
         showDialog(
             context: context,
             builder: (BuildContext context) {

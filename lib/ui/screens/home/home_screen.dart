@@ -1,3 +1,4 @@
+import 'package:book_space/constants/constants.dart';
 import 'package:book_space/ui/widgets/bs_home_book_component.dart';
 import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
@@ -21,19 +22,26 @@ class _HomeScreenState extends State<HomeScreen> {
         bgColor: BSColors.mainOrange,
         titleColor: BSColors.screenBackground,
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: 5,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
-            return buildHomeBookComponent(
-              context: context,
-              bookName: 'Baby Coming',
-              bookAuthorName: 'Jon Week',
-              bookInitialRating: 3,
-              bookPrice: 15.99,
-            );
-          },
+      body: Padding(
+        padding: kScaffoldMainPadding,
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return buildHomeBookComponent(
+                    context: context,
+                    bookName: 'Baby Coming',
+                    bookAuthorName: 'Jon Week',
+                    bookInitialRating: 3,
+                    bookPrice: 15.99,
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
