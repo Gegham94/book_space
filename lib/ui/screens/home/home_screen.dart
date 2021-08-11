@@ -1,12 +1,10 @@
-import 'package:book_space/constants/constants.dart';
+import 'package:book_space/ui/widgets/bs_home_book_component.dart';
 import 'package:book_space/utilities/bs_colors.dart';
 import 'package:book_space/utilities/ui_utilities.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String? uid;
-
-  const HomeScreen({Key? key, this.uid}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -23,13 +21,19 @@ class _HomeScreenState extends State<HomeScreen> {
         bgColor: BSColors.mainOrange,
         titleColor: BSColors.screenBackground,
       ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: Padding(
-            padding: kScaffoldMainPadding,
-            child: Column(),
-          ),
+      body: Container(
+        child: ListView.builder(
+          itemCount: 5,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (BuildContext context, int index) {
+            return buildHomeBookComponent(
+              context: context,
+              bookName: 'Baby Coming',
+              bookAuthorName: 'Jon Week',
+              bookInitialRating: 3,
+              bookPrice: 15.99,
+            );
+          },
         ),
       ),
     );
